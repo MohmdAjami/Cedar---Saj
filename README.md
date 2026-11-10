@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+# Cedar & Saj – Lebanese Restaurant Ordering System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**CSCI426 Advanced Web Programming – Project Phase 1 (Fall 2026)**
 
-## Available Scripts
+Cedar & Saj is a responsive restaurant ordering website built with **ReactJS**. Customers can browse a Lebanese menu, search and filter dishes, save favourites, add dishes to a cart, place an order for delivery or pick-up, and follow the order live on a tracking page.
 
-In the project directory, you can run:
+🔗 **Live demo:** `https://<github-username>.github.io/<repo-name>/` *(see [Deployment](#deployment))*
 
-### `npm start`
+![Home page](docs/screenshots/home.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+| Page | Route | What it does |
+|------|-------|--------------|
+| **Home** | `/` | Hero section, "how it works" steps, popular dishes loaded from JSON, guest reviews |
+| **Menu** *(dynamic page)* | `/menu` | Dishes fetched from `public/data/menu.json`; live search, category filter, vegetarian and favourites filters, sorting by price / rating / name |
+| **Services** | `/services` | Delivery, take-away, dine-in, catering and events; opening hours; FAQ accordion |
+| **About** | `/about` | Restaurant story, values, timeline and team |
+| **Contact** | `/contact` | Controlled form with validation and a success message |
+| **Cart** | `/cart` | Change quantities, remove items, delivery or pick-up, validated checkout form |
+| **Track Order** | `/track` | Live progress bar and steps (received → preparing → on the way → delivered), order history, search by order number |
+| **404** | `*` | Friendly "page not found" page |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Also included:
 
-### `npm run build`
+- **Responsive design** for desktop, tablet and mobile, with a hamburger menu on small screens
+- **Dark / light theme** shared with `useContext` and remembered in `localStorage`
+- **Cart, favourites and orders saved** in `localStorage`, so nothing is lost on page refresh
+- Cart badge in the NavBar showing the number of items
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **ReactJS** (Create React App) – components, props, JSX, `.map()` with keys
+- **React Hooks** – `useState`, `useEffect`, `useContext`
+- **React Router** (`react-router-dom`) – `BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`
+- **MUI Icons** (`@mui/icons-material`) with Emotion
+- **CSS3** – one CSS file per component, CSS variables, Flexbox, Grid, media queries
+- **JSON + Fetch API** – menu data loaded from `public/data/menu.json`
+- **localStorage** – `JSON.stringify` / `JSON.parse` with `try/catch`
+- **Git & GitHub** – version control; **GitHub Actions + GitHub Pages** – hosting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
 
-### `npm run eject`
+```
+cedar-table/
+├── public/
+│   ├── data/menu.json        # menu data (18 dishes)
+│   ├── images/               # food illustrations (SVG)
+│   └── index.html
+├── src/
+│   ├── components/           # NavBar, Footer, MenuCard, SectionTitle, Logo, ScrollToTop
+│   ├── context/              # ThemeContext, CartContext
+│   ├── pages/                # Home, Menu, Services, About, Contact, Cart, TrackOrder, NotFound
+│   ├── styles/               # one CSS file per component/page
+│   ├── utils/storage.js      # localStorage helpers + price formatting
+│   ├── App.js                # routes
+│   └── index.js
+├── docs/screenshots/
+└── .github/workflows/deploy.yml
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Setup Instructions
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Requirements:** [Node.js](https://nodejs.org/) 18 or newer and npm.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+# 1. Clone the repository
+git clone https://github.com/<github-username>/<repo-name>.git
+cd <repo-name>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 2. Install the dependencies
+npm install
 
-## Learn More
+# 3. Start the development server (opens http://localhost:3000)
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 4. Build for production (output in the build/ folder)
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Deployment
 
-### Code Splitting
+The site deploys to **GitHub Pages** automatically with GitHub Actions (`.github/workflows/deploy.yml`):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Push the code to the `main` branch.
+2. On GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions** (one time only).
+3. Every push to `main` builds the app and publishes it at `https://<github-username>.github.io/<repo-name>/`.
 
-### Analyzing the Bundle Size
+The workflow sets `PUBLIC_URL` to the repository name, and `BrowserRouter` uses it as its `basename`. It also copies `index.html` to `404.html` so links like `/menu` still work after a page refresh.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Screenshots
 
-### Making a Progressive Web App
+### Menu – search, filter and sort
+![Menu page](docs/screenshots/menu.jpg)
+![Menu filtered by Grills, sorted by price](docs/screenshots/menu-filtered.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Cart and checkout
+![Cart page](docs/screenshots/cart.jpg)
 
-### Advanced Configuration
+### Live order tracking
+![Track order page](docs/screenshots/track-order.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Services, About and Contact
+![Services page](docs/screenshots/services.jpg)
+![About page](docs/screenshots/about.jpg)
+![Contact form sent](docs/screenshots/contact.jpg)
 
-### Deployment
+### Dark mode
+![Dark mode](docs/screenshots/dark-mode.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Mobile
+![Mobile views: home, navigation menu, menu and cart](docs/screenshots/mobile.jpg)
 
-### `npm run build` fails to minify
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Phase 1 is **frontend only**. Orders and messages are stored in the browser (`localStorage`). A backend will be added in a later phase.
+- Order tracking runs in **demo mode** (1 second = 1 minute) so every step can be seen quickly.
+- The restaurant, its address, team and reviews are **fictional**. The food illustrations were drawn for this project as SVG files.
+
+## Team
+
+- Mohammad Ajami – 72130193
+
+Instructor: Kawthar Messelmani
