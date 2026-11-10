@@ -4,7 +4,7 @@
 
 Cedar & Saj is a responsive restaurant ordering website built with **ReactJS**. Customers can browse a Lebanese menu, search and filter dishes, save favourites, add dishes to a cart, place an order for delivery or pick-up, and follow the order live on a tracking page.
 
-🔗 **Live demo:** `https://<github-username>.github.io/<repo-name>/` *(see [Deployment](#deployment))*
+🔗 **Live demo:** https://mohmdajami.github.io/Cedar---Saj/
 
 ![Home page](docs/screenshots/home.jpg)
 
@@ -67,8 +67,8 @@ cedar-table/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<github-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/MohmdAjami/Cedar---Saj.git
+cd Cedar---Saj
 
 # 2. Install the dependencies
 npm install
@@ -86,7 +86,7 @@ The site deploys to **GitHub Pages** automatically with GitHub Actions (`.github
 
 1. Push the code to the `main` branch.
 2. On GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions** (one time only).
-3. Every push to `main` builds the app and publishes it at `https://<github-username>.github.io/<repo-name>/`.
+3. Every push to `main` builds the app and publishes it at https://mohmdajami.github.io/Cedar---Saj/.
 
 The workflow sets `PUBLIC_URL` to the repository name, and `BrowserRouter` uses it as its `basename`. It also copies `index.html` to `404.html` so links like `/menu` still work after a page refresh.
 
