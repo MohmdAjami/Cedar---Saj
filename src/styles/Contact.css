@@ -1,0 +1,148 @@
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.leftSide {
+  background: var(--green);
+  color: #fff;
+  padding: 44px 38px;
+  display: flex;
+  flex-direction: column;
+  background-image: radial-gradient(circle at 100% 100%, rgba(217, 164, 65, 0.3) 0, transparent 50%);
+}
+
+.leftSide p {
+  opacity: 0.85;
+}
+
+.leftSide ul {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 28px;
+}
+
+.leftSide li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.leftSide li svg {
+  color: var(--gold);
+}
+
+.leftSide img {
+  margin-top: auto;
+  border-radius: 18px;
+  opacity: 0.95;
+}
+
+.rightSide {
+  padding: 44px 40px;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(200, 85, 61, 0.15);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.error {
+  color: var(--terracotta);
+  font-size: 0.82rem;
+}
+
+#contact-form .btn {
+  align-self: flex-start;
+}
+
+.sent-message {
+  height: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.sent-message svg {
+  font-size: 4rem;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+
+.sent-message p {
+  color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSide img {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rightSide,
+  .leftSide {
+    padding: 30px 22px;
+  }
+}
